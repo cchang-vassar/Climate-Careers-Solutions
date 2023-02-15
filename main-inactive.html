@@ -12,7 +12,7 @@
 	xml:space="preserve">
 	<defs>
 		<!--hover shadow filters-->
-		<filter id="labelHoverShadow">
+		<filter id="labelShadow">
 			<feDropShadow
 				dx="4"
 				dy="4"
@@ -30,6 +30,15 @@
 				flood-color="#6add93" />
 		</filter>
 
+		<filter id="agricultureActiveShadow">
+			<feDropShadow
+				dx="-4rem"
+				dy="-4rem"
+				stdDeviation="10"
+				flood-opacity="0.7"
+				flood-color="#38ab61" />
+		</filter>
+
 		<filter id="wasteHoverShadow">
 			<feDropShadow
 				dx="-4rem"
@@ -37,6 +46,15 @@
 				stdDeviation="10"
 				flood-opacity="0.7"
 				flood-color="#52b1e1" />
+		</filter>
+
+		<filter id="wasteActiveShadow">
+			<feDropShadow
+				dx="-4rem"
+				dy="-2rem"
+				stdDeviation="10"
+				flood-opacity="0.7"
+				flood-color="#207faf" />
 		</filter>
 
 		<filter id="industryHoverShadow">
@@ -48,6 +66,15 @@
 				flood-color="#898989" />
 		</filter>
 
+		<filter id="industryActiveShadow">
+			<feDropShadow
+				dx="-4rem"
+				dy="0rem"
+				stdDeviation="10"
+				flood-opacity="0.7"
+				flood-color="#575757" />
+		</filter>
+
 		<filter id="energyHoverShadow">
 			<feDropShadow
 				dx="4rem"
@@ -55,6 +82,15 @@
 				stdDeviation="10"
 				flood-opacity="0.7"
 				flood-color="#ff7b23" />
+		</filter>
+
+		<filter id="energyActiveShadow">
+			<feDropShadow
+				dx="4rem"
+				dy="4rem"
+				stdDeviation="10"
+				flood-opacity="0.7"
+				flood-color="#e34900" />
 		</filter>
 	</defs>
 
@@ -76,7 +112,7 @@
 		{fill: #3a3737;}
 
 		<!--global/classes-->
-		.main_label{fill:#FFFFFF; filter: url(#labelHoverShadow);}
+		.main_label{fill:#FFFFFF; filter: url(#labelShadow);}
 
 		<!--colors-->
 		  <!--{agriculture}-->
@@ -128,15 +164,22 @@
 		  #energy_in_agriculture_fishing
 		  {fill:#EBC083; color: #EBC083;}
 
-		<!--linked-->
-		<!--#agriculture_group .main_pie_path.linked:hover{fill: #6add93; stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#agricultureHoverShadow);}-->
-		<!--#waste_group .main_pie_path.linked:hover{fill: #52b1e1; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#wasteHoverShadow);}-->
-		<!--#industry_group .main_pie_path.linked:hover{fill: #898989; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#industryHoverShadow);}-->
-		<!--#energy_group .main_pie_path.linked:hover{fill: #ff7b23; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#energyHoverShadow);}-->
-		<!--#agriculture_group .main_pie_path.linked:hover {filter: drop-shadow(0.4rem 0.4rem 0.8rem);}-->
-		<!--.sec_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}-->
-		<!--.third_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}-->
+		<!--linked:hover-->
+		<!--#agriculture_group .main_pie_path.linked:hover{fill: #6add93; stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#agricultureHoverShadow);}
+		#waste_group .main_pie_path.linked:hover{fill: #52b1e1; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#wasteHoverShadow);}
+		#industry_group .main_pie_path.linked:hover{fill: #898989; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#industryHoverShadow);}
+		#energy_group .main_pie_path.linked:hover{fill: #ff7b23; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#energyHoverShadow);}
+		#agriculture_group .main_pie_path.linked:hover {filter: drop-shadow(0.4rem 0.4rem 0.8rem);}
+		.sec_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}
+		.third_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}-->
 
+		<!--linked:active-->
+		<!--
+			#agriculture_group .main_pie_path.linked:active{fill: #38ab61; stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#agricultureActiveShadow);}
+			#waste_group .main_pie_path.linked:active{fill: #207faf; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#wasteActiveShadow);}
+			#industry_group .main_pie_path.linked:active{fill: #575757; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#industryActiveShadow);}
+			#energy_group .main_pie_path.linked:active{fill: #e34900; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#energyActiveShadow);}
+		-->
 		<!--opacity-->
 		#piechart .sec_slice_path{opacity: 30%;}
 		#piechart .sec_slice_label{opacity: 30%;}
