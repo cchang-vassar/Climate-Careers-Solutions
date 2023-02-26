@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<?xml version="1.0" encoding="utf-8"?>
+
+<link rel="stylesheet" href="GHG-piechart-stylesheet.css" />
 
 <svg
 	version="1.1"
@@ -28,15 +30,6 @@
 				stdDeviation="10"
 				flood-opacity="0.7"
 				flood-color="#6add93" />
-		</filter>
-
-		<filter id="agricultureActiveShadow">
-			<feDropShadow
-				dx="-4rem"
-				dy="-4rem"
-				stdDeviation="10"
-				flood-opacity="0.7"
-				flood-color="#38ab61" />
 		</filter>
 
 		<filter id="wasteHoverShadow">
@@ -93,97 +86,6 @@
 				flood-color="#e34900" />
 		</filter>
 	</defs>
-
-	<style type="text/css">
-		<!--piechart_title-->
-		.agricultural_soils_label_path
-		{fill: #49673f;}
-		.sec_slice_label_path fugitive_emissions_label_path
-		{fill: #fdb679;}
-		.our_world_in_data_logo_text_background
-		{fill: #002149;}
-		.our_world_in_data_logo_border
-		{fill: #e60006;}
-		.our_world_in_data_logo_text
-		{fill: #fefefe;}
-		.our_world_in_data_logo_background
-		{fill: #00214a;}
-		.pie_chart_title
-		{fill: #3a3737;}
-
-		<!--global/classes-->
-		.main_label{fill:#FFFFFF; filter: url(#labelShadow);}
-
-		<!--colors-->
-		  <!--{agriculture}-->
-		  #agriculture_group .main_pie_path
-		  {fill: #51C47A; color: #51C47A}
-
-		  #livestock_manure{fill: #455341; color: #455341;}
-		  #agricultural_soils{fill: #49673F; color: #49673F;}
-		  #rice_cultivation{fill: #6B8D3D; color: #6B8D3D;}
-		  #crop_burning{fill: #5BBB80; color: #5BBB80;}
-		  #deforestation{fill: #79D99E; color: #79D99E;}
-		  #cropland{fill: #AEDE9E; color: #AEDE9E;}
-		  #grassland_label_line
-		  {fill: none; stroke: #49a83f; stroke-width: 0.5; stroke-miterlimit: 10;}
-		  .grassland_label_path{fill: #49A83F; color: #49A83F;}
-
-		  <!--waste-->
-		  #waste_group .main_pie_path
-		  {fill: #3998C8; color: #3998C8;}
-		  #landfills{fill: #1B7AAA; color: #1B7AAA;}
-		  #wastewater{fill: #3998C8; color: #3998C8;}
-
-		  <!--industry-->
-		  #industry_group .main_pie_path
-		  {fill: #707070;}
-		  #chemicals{fill: #707070; color: #707070;}
-		  #cement{fill: #A2A2A2; color: #A2A2A2;}
-
-		  <!--energy-->
-		  #energy_group .main_pie_path
-		  {fill: #FC620A; color: #FC620A;}
-
-		  #energy_use_in_industry
-		  {fill:#FC2B0A; color: #FC2B0A;}
-		  #non_ferrous_metals_label_line
-		  {fill:none; stroke:#FC2B0A;}
-
-		  #transport
-		  {fill:#C02600; color: #C02600;}
-
-		  #energy_use_in_buildings
-		  {fill:#FC620A; color: #FC620A;}
-		  #unallocated_fuel_combustion
-		  {fill:#FF8028; color: #FF8028;}
-
-		  #fugitive_emissions_from_energy_production
-		  {fill:#FDB679; color: #FDB679;}
-
-		  #energy_in_agriculture_fishing
-		  {fill:#EBC083; color: #EBC083;}
-
-		<!--linked:hover-->
-		#agriculture_group .main_pie_path.linked:hover{fill: #6add93; stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#agricultureHoverShadow);}
-		#waste_group .main_pie_path.linked:hover{fill: #52b1e1; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#wasteHoverShadow);}
-		#industry_group .main_pie_path.linked:hover{fill: #898989; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#industryHoverShadow);}
-		#energy_group .main_pie_path.linked:hover{fill: #ff7b23; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#energyHoverShadow);}
-		<!--#agriculture_group .main_pie_path.linked:hover {filter: drop-shadow(0.4rem 0.4rem 0.8rem);}-->
-		<!--.sec_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}-->
-		<!--.third_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}-->
-
-		<!--linked:active-->
-		#agriculture_group .main_pie_path.linked:active{fill: #38ab61; stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#agricultureActiveShadow);}
-		#waste_group .main_pie_path.linked:active{fill: #207faf; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#wasteActiveShadow);}
-		#industry_group .main_pie_path.linked:active{fill: #575757; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#industryActiveShadow);}
-		#energy_group .main_pie_path.linked:active{fill: #e34900; stroke: #FFFFFF; stroke-width:2; stroke-miterlimit:10; filter: url(#energyActiveShadow);}
-
-		<!--opacity-->
-		#piechart .sec_slice_path{opacity: 30%;}
-		#piechart .sec_slice_label{opacity: 30%;}
-		#piechart .third_slice{opacity: 30%;}
-	</style>
 
 	<!--piechart-->
 	<g id="piechart">
@@ -5713,3 +5615,5 @@
 		</g>
 	</g>
 </svg>
+
+<script src="GHG-pie-chart-script.js"></script>

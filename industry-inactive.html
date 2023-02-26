@@ -76,7 +76,7 @@
 		</filter>
 
 		<filter id="industryClickedShadow">
-			<feFlood flood-color="#575757" />
+			<feFlood flood-color="#3e3e3e" />
 
 			<!-- This next operation subtracts the original shape from the red color 
 			field filling the filter region - which will give you a big color border 
@@ -86,8 +86,8 @@
 			<!-- Next we want to expand the red border so it overlaps the space of the 
 			original shape - the radius 4 below will expand it by 4 pixels -->
 
-			<feMorphology operator="dilate" radius="4" />
-			<feGaussianBlur stdDeviation="5" />
+			<feMorphology operator="dilate" radius="6" />
+			<feGaussianBlur stdDeviation="8" />
 
 			<!-- After blurring it, we want to select just the parts of the blurred, 
 			expanded border that overlap the original shape - which we can do by using 
