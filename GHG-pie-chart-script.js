@@ -58,15 +58,19 @@ function getFill(id)
     return rgbToHex(parseInt(rgb[0].substring(4)), parseInt(rgb[1]), parseInt(rgb[2]));
 }
 
-function createDropShadow(id, idSuffix){
+function getFilterId(id){
+    return id + "_filter";
+}
+
+function createDropShadow(id){
     let filter = document.createElementNS(svgNS, "filter");
-    filter.setAttribute("id", id + "_filter")
+    filter.setAttribute("id", getFilterId(id))
     let feDropShadow = document.createElementNS(svgNS, "feDropShadow");
     feDropShadow.setAttribute("dx", "0");
     feDropShadow.setAttribute("dy", "0");
     feDropShadow.setAttribute("stdDeviation", "10");
     feDropShadow.setAttribute("flood-opacity", "0.7");
-    feDropShadow.setAttribute("flood-color", colorLighten(getFill(id + idSuffix)));
+    feDropShadow.setAttribute("flood-color", colorLighten(getFill(id)));
     filter.appendChild(feDropShadow);
     defs.appendChild(filter);
 }
@@ -76,28 +80,49 @@ function putOnTop(id){
     element.parentNode.appendChild(element);
 }
 
-function hoverEffect(ids, idSuffix)
+function hoverGroupEffect(sourceIds, destinationsFunction)
 {
-    ids.forEach(id => {
-        let element = document.getElementById(id);
-        let elementSuffixed = document.getElementById(id + idSuffix);
-        elementSuffixed.style.stroke = "#FFFFFF";
-        element.style.zIndex = "0";
-        let filterId = id + "_filter";
-        element.onmouseenter = () => {
-            createDropShadow(id, idSuffix);
-            element.style.filter = "url(#" + filterId + ")";
-            elementSuffixed.style.strokeWidth = "2";
-            putOnTop(id);
-        };
-        element.onmouseleave = () => {
+    sourceIds.forEach(id => {
+        hoverEffect(id, destinationsFunction(id));    
+    });   
+}
+
+function hoverEffect(sourceId, destinationIds){
+    let source = document.getElementById(sourceId);
+    let destinations = destinationIds.map(x => document.getElementById(x));
+    let opacities = destinations.map(element => getComputedStyle(element).getPropertyValue("opacity"));
+    destinations.forEach(element => element.style.stroke = "#FFFFFF");
+
+    source.onmouseenter = () => {
+        destinations.forEach(element => {
+            createDropShadow(destinationIds[destinations.indexOf(element)]);
+            element.style.filter = "url(#" + getFilterId(destinationIds[destinations.indexOf(element)]) + ")"
+            element.style.strokeWidth = "2";
+            element.setAttribute("opacity", "1");
+        });
+        putOnTop(sourceId);
+    };
+    source.onmouseleave = () => {
+        destinations.forEach(element => {
             element.style.filter = "";
-            elementSuffixed.style.strokeWidth = "0";
-            defs.removeChild(document.getElementById(filterId));
-    }});   
+            element.style.strokeWidth = "0";
+            element.setAttribute("opacity", opacities[destinations.indexOf(element)]);
+            defs.removeChild(document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)])));
+        });
+    }
 }
 
 
 /* Main functions */
-const main_pie_array = ["agriculture", "waste", "industry", "energy"].map(x => x + "_main_pie");
-hoverEffect(main_pie_array, "_path");
+let main_pie_array;
+switch (svg.getAttribute("id")) {
+    case "original":
+        main_pie_array = ["agriculture", "waste", "industry", "energy"].map(x => x + "_main_pie");
+        hoverGroupEffect(main_pie_array, x => {return [x + "_path"];});
+        break;
+    case "section":
+        main_pie_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland"];
+        hoverGroupEffect(main_pie_array, x => {return [x + "_sec_slice", x + "_pie"]});
+        hoverGroupEffect(main_pie_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x]});
+        break;
+}
