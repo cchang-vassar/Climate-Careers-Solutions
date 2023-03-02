@@ -32,20 +32,20 @@ function colorLighten(hex)
 }
 
 /* Main functions */
+/*
 var main_pie_linked = document.getElementById("sec_slice_label_path");
 main_pie_linked.onmousenter = () =>
 {
     var original_color = main_pie_linked.style.fill;
     main_pie_linked.style.fill = colorLighten(original_color);
 }
+*/
 
 var ag_main_pie = document.getElementById("agriculture_main_pie");
 var poop_sec_slice = document.getElementById("livestock_manure");
 var hover_shadow = document.getElementById("wasteHoverShadow");
 
 ag_main_pie.onmouseenter = () => {
-    poop_sec_slice.style.fill = "red";
-    poop_sec_slice.style.color = "red";
     document.documentElement.style.setProperty('--test-color', '#FC2B0A');
     poop_sec_slice.style.filter = "url(#wasteHoverShadow)";
 };
