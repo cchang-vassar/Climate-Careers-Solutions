@@ -28,9 +28,6 @@
 	--unallocated-fuel-combustion-col: #FF8028;
 	--fugitive-emissions-from-energy-production-col: #FDB679;
 	--energy-in-agriculture-fishing-col: #EBC083;
-
-	--hover-border-width: 2;
-	--hover-border-color: #FFFFFF;
 }
 
 /* Agriculture style */
@@ -72,3 +69,5 @@
 .pie_chart_title{fill: #3a3737;}
 
 .main_label{fill:#FFFFFF; filter: url(#labelShadow);}
+
+.main_slice{opacity: 30%;}

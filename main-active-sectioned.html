@@ -2,6 +2,7 @@
 <!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 
 <svg
+	id="section"
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -11,104 +12,81 @@
 	style="enable-background: new 0 0 1920 1244"
 	xml:space="preserve">
 	<defs>
-		<!--hover shadow filters-->
-		<filter id="agricultureHoverShadow">
+		<!--shadow filters-->
+		<filter id="labelShadow">
 			<feDropShadow
-				dx="4rem"
-				dy="4rem"
-				stdDeviation="5rem"
+				dx="4"
+				dy="4"
+				stdDeviation="10"
 				flood-opacity="0.7"
-				flood-color="#51C47A" />
-		</filter>
-
-		<filter id="wasteHoverShadow">
-			<feDropShadow
-				dx="-2rem"
-				dy="-2rem"
-				stdDeviation="0.4rem"
-				flood-opacity="0.5"
-				flood-color="#3998C8" />
+				flood-color="#000000" />
 		</filter>
 	</defs>
 
 	<style type="text/css">
-		<!--global/classes-->
-		.main_label{fill:#FFFFFF;}
+		:root {
+			--agriculture-col: #51C47A;
+			--livestock-manure-col: #455341;
+			--agricultural-soils-col: #49673F;
+			--rice-cultivation-col: #6B8D3D;
+			--crop-burning-col: #5BBB80;
+			--deforestation-col: #79D99E;
+			--cropland-col: #AEDE9E;
+			--grassland-col: #49a83f;
 
-		<!--colors-->
-		  <!--{agriculture}-->
-		  #agriculture_group .main_slice_pie
-		  {fill: #51C47A; color: #51C47A}
+			--waste-col: #3998C8;
+			--landfills-col: #1B7AAA;
+			--wastewater-col: #3998C8;
 
-		  #livestock_manure{fill: #455341; color: #455341;}
-		  #agricultural_soils{fill: #49673F; color: #49673F;}
-		  #rice_cultivation{fill: #6B8D3D; color: #6B8D3D;}
-		  #crop_burning{fill: #5BBB80; color: #5BBB80;}
-		  #deforestation{fill: #79D99E; color: #79D99E;}
-		  #cropland{fill: #AEDE9E; color: #AEDE9E;}
-		  #grassland_label_line
-		  {fill: none; stroke: #49a83f; stroke-width: 0.5; stroke-miterlimit: 10;}
-		  .grassland_label_path{fill: #49A83F; color: #49A83F;}
+			--industry-col: #707070;
+			--chemicals-col: #707070;
+			--cement-col: #A2A2A2;
 
-		  <!--waste-->
-		  #waste_group .main_slice_pie
-		  {fill: #3998C8; color: #3998C8;}
-		  #landfills{fill: #1B7AAA; color: #1B7AAA;}
-		  #wastewater{fill: #3998C8; color: #3998C8;}
-		  #industry_group .main_slice_pie
-		  {fill: #707070;}
-		  #chemicals{fill: #707070; color: #707070;}
-		  #cement{fill: #A2A2A2; color: #A2A2A2;}
+			--energy-col: #FC620A;
+			--energy-use-in-industry-col: #FC2B0A;
+			--transport-col: #C02600;
+			--energy-use-in-buildings-col: #FC620A;
+			--unallocated-fuel-combustion-col: #FF8028;
+			--fugitive-emissions-from-energy-production-col: #FDB679;
+			--energy-in-agriculture-fishing-col: #EBC083;
+		}
 
-		  <!--energy-->
-		  #energy_group .main_slice_pie
-		  {fill: #FC620A; color: #FC620A;}
+		#agriculture_group .main_pie_path{fill: var(--agriculture-col);}
+		#livestock_manure{fill: var(--livestock-manure-col);}
+		#agricultural_soils{fill: var(--agricultural-soils-col);}
+		#rice_cultivation{fill: var(--rice-cultivation-col);}
+		#crop_burning{fill: var(--crop-burning-col);}
+		#deforestation{fill: var(--deforestation-col);}
+		#cropland{fill: var(--cropland-col);}
+		#grassland_label_line{fill: none; stroke: var(--grassland-col); stroke-width: 0.5; stroke-miterlimit: 10;}
+		.grassland_label_path{fill: var(--grassland-col);}
 
-		  #energy_use_in_industry
-		  {fill:#FC2B0A; color: #FC2B0A;}
-		  #non_ferrous_metals_label_line
-		  {fill:none; stroke:#FC2B0A;}
+		#waste_group .main_pie_path{fill: var(--waste-col);}
+		#landfills{fill: var(--landfills-col);}
+		#wastewater{fill: var(--wastewater-col);}
 
-		  #transport
-		  {fill:#C02600; color: #C02600;}
+		#industry_group .main_pie_path{fill: var(--industry-col);}
+		#chemicals{fill: var(--chemicals-col);}
+		#cement{fill: var(--cement-col);}
 
-		  #energy_use_in_buildings
-		  {fill:#FC620A; color: #FC620A;}
-		  #unallocated_fuel_combustion
-		  {fill:#FF8028; color: #FF8028;}
+		#energy_group .main_pie_path{fill: var(--energy-col);}
+		#energy_use_in_industry{fill: var(--energy-use-in-industry-col);}
+		#non_ferrous_metals_label_line{fill: none; stroke: var(--energy-use-in-industry-col);}
+		#transport{fill: var(--transport-col);}
+		#energy_use_in_buildings{fill: var(--energy-use-in-buildings-col);}
+		#unallocated_fuel_combustion{fill: var(--unallocated-fuel-combustion-col);}
+		#fugitive_emissions_from_energy_production{fill: var(--fugitive-emissions-from-energy-production-col);}
+		#energy_in_agriculture_fishing{fill: var(--energy-in-agriculture-fishing-col);}
 
-		  #fugitive_emissions_from_energy_production
-		  {fill:#FDB679; color: #FDB679;}
+		.our_world_in_data_logo_text_background{fill: #002149;}
+		.our_world_in_data_logo_border{fill: #e60006;}
+		.our_world_in_data_logo_text{fill: #fefefe;}
+		.our_world_in_data_logo_background{fill: #00214a;}
+		.pie_chart_title{fill: #3a3737;}
 
-		  #energy_in_agriculture_fishing
-		  {fill:#EBC083; color: #EBC083;}
+		.main_label{fill:#FFFFFF; filter: url(#labelShadow); pointer-events: none;}
 
-		<!--linked-->
-		.main_pie.linked:hover {filter:url(#wasteHoverShadow);}
-		.main_slice_pie.linked:active {filter: brightness(85%) drop-shadow(0.2rem 0.2rem 0.4rem);}
-		<!--.sec_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}-->
-		.third_slice_path:hover{stroke:#FFFFFF; stroke-width:2; stroke-miterlimit:10;}
-
-		<!--opacity-->
-		#piechart .sec_slice_path{opacity: 30%;}
-		#piechart .sec_slice_label{opacity: 30%;}
-		#piechart .third_slice{opacity: 30%;}
-
-		<!--piechart_title-->
-		.agricultural_soils_label_path
-		{fill: #49673f;}
-		.sec_slice_label_path fugitive_emissions_label_path
-		{fill: #fdb679;}
-		.our_world_in_data_logo_text_background
-		{fill: #002149;}
-		.our_world_in_data_logo_border
-		{fill: #e60006;}
-		.our_world_in_data_logo_text
-		{fill: #fefefe;}
-		.our_world_in_data_logo_background
-		{fill: #00214a;}
-		.pie_chart_title
-		{fill: #3a3737;}
+		.main_slice{opacity: 30%;}
 	</style>
 
 	<!--piechart-->
@@ -118,29 +96,29 @@
 				<a
 					href="https://climatesolutions-careers.org/home/climate-solutions/energy-emissions-the-big-picture/agriculture-forestry-land-use/">
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="livestock_manure_pie"
 						d="M904.9,390.8c-6.1,1.9-12,3.9-17.9,6.2l112.1,292.5l-0.8-312.9
 					C990.3,377.1,938.9,380.3,904.9,390.8z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="agricultural_soils_pie"
 						d="M815.1,435.4l184,256.5l0-2.5L887,397C861.3,406.7,837.2,419.7,815.1,435.4z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="rice_cultivation_pie"
 						d="M794.2,451.7L999,692.3l0.1,0l0-0.4l-184-256.5
 					C807.9,440.6,800.9,446,794.2,451.7z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="crop_burning_pie"
 						d="M999,692.3L794.2,451.7c-17.6,14.9-33.6,31.8-47.7,50.3l249.7,189L999,692.3z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="deforestation_pie"
 						d="M996.2,691L746.5,502c-8.8,11.6-16.8,23.8-24,36.6l265.6,148.8L996.2,691z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="cropland_pie"
 						d="M988.1,687.5L722.5,538.7c-4.7,8.4-9.1,17.1-13.1,26L988.1,687.5z" />
 					<g class="main_label" id="agriculture_main_label">
@@ -1221,12 +1199,12 @@
 				<a
 					href="https://climatesolutions-careers.org/home/climate-solutions/energy-emissions-the-big-picture/waste/">
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="landfills_pie"
 						d="M990.5,690.7L708.6,566.5c-1.6,3.6-7.5,17.4-12.3,33.1c-0.1,0.2-0.1,0.5-0.2,0.7
-        l286.1,88.7L990.5,690.7z" />
+        				l286.1,88.7L990.5,690.7z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="wastewater-pie"
 						d="M982.2,688.9l-286.1-88.7c-2.5,8-4.6,16.2-6.5,24.4L982.2,688.9z" />
 					<g class="main_label" id="waste_main_label">
@@ -1506,11 +1484,11 @@
 				<a
 					href="https://climatesolutions-careers.org/home/climate-solutions/industry-process-emissions/">
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="chemicals_pie"
 						d="M993.8,693.5l-304.7-66.9c-0.9,4-4.2,20.4-6,41.5l307.2,25.8L993.8,693.5z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="cement_pie"
 						d="M683.1,668.1c-0.7,8-1.1,16.8-1.1,25.8c0,10.5,0.5,21.1,1.5,31.4l306.8-31.4L683.1,668.1z" />
 					<g class="main_label" id="industry_main_label">
@@ -1764,31 +1742,31 @@
 				<a
 					href="https://climatesolutions-careers.org/home/climate-solutions/energy-emissions-the-big-picture/">
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="energy_use_in_industry_pie"
 						d="M1316.4,682.2L1000,695L1316.4,682.2c-2.9-80.4-35.5-155.5-92.7-212.7
         c-59.7-59.7-139-92.7-223.4-92.9l0.7,318.2" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="transport_pie"
 						d="M1316.7,693.9c0-3.9-0.1-7.8-0.2-11.6l-315.3,12.6l0,0l175.5,262.4
 					c16.7-11.3,32.5-24.3,47.1-38.9C1283.7,858.3,1316.7,778.6,1316.7,693.9z" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="energy_use_in_buildings_pie"
 						d="M845.5,971.4c46.7,25.9,99.5,39.8,153.9,39.8
 					c64.1,0,125.3-18.9,177.2-54l-175.5-262.4" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="unallocated_fuel_combustion_pie"
 						d="M734.5,868.6c14.5,21.9,31.8,42.2,51.6,60.2
 					c18.3,16.6,38.2,30.9,59.5,42.7l155.6-276.6l-0.9,0.1" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="fugitive_emissions_pie"
 						d="M689.6,762.7c8.4,37.8,23.6,73.7,44.9,105.9l265.8-173.7" />
 					<path
-						class="main_slice_pie"
+						class="main_pie_path"
 						id="energy_in_agriulture_pie"
 						d="M1000.2,694.8l-316.4,32.4c1.3,12,3.2,23.8,5.8,35.4" />
 					<g class="main_label" id="energy_main_label">
@@ -5693,3 +5671,5 @@
 		</g>
 	</g>
 </svg>
+
+<script src="GHG-pie-chart-script.js"></script>
