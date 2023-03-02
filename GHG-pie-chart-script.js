@@ -58,7 +58,6 @@ function getFill(id)
     var rgb = fill.split(",");
     return rgbToHex(parseInt(rgb[0].substring(4)), parseInt(rgb[1]), parseInt(rgb[2]));
 }
-*/
 
 function getFilterId(id){
     return id + "_filter";
