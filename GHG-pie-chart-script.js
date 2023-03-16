@@ -67,9 +67,10 @@ function createDropShadow(id){
     let filter = document.createElementNS(svgNS, "filter");
     filter.setAttribute("id", getFilterId(id))
     let feDropShadow = document.createElementNS(svgNS, "feDropShadow");
+    feDropShadow.setAttribute("in", "SourceGraphic");
     feDropShadow.setAttribute("dx", "0");
     feDropShadow.setAttribute("dy", "0");
-    feDropShadow.setAttribute("stdDeviation", "10");
+    feDropShadow.setAttribute("stdDeviation", "5");
     feDropShadow.setAttribute("flood-opacity", "0.7");
     feDropShadow.setAttribute("flood-color", colorLighten(getFill(id)));
     filter.appendChild(feDropShadow);
@@ -81,25 +82,27 @@ function putOnTop(id){
     element.parentNode.appendChild(element);
 }
 
-function hoverGroupEffect(sourceIds, destinationsFunction)
+function hoverGroupEffect(sourceIds, destinationsFunction, strokeStates)
 {
     sourceIds.forEach(id => {
-        hoverEffect(id, destinationsFunction(id));    
+        hoverEffect(id, destinationsFunction(id), strokeStates);    
     });   
 }
 
-function hoverEffect(sourceId, destinationIds){
+function hoverEffect(sourceId, destinationIds, strokeStates){
     let source = document.getElementById(sourceId);
     let destinations = destinationIds.map(x => document.getElementById(x));
     let opacities = destinations.map(element => getComputedStyle(element).getPropertyValue("opacity"));
-    destinations.forEach(element => element.style.stroke = "#FFFFFF");
-
     source.onmouseenter = () => {
         destinations.forEach(element => {
-            createDropShadow(destinationIds[destinations.indexOf(element)]);
-            element.style.filter = "url(#" + getFilterId(destinationIds[destinations.indexOf(element)]) + ")"
-            element.style.strokeWidth = "2";
-            element.setAttribute("opacity", "1");
+            elementIndex = destinations.indexOf(element);
+            createDropShadow(destinationIds[elementIndex]);
+            element.style.filter = "url(#" + getFilterId(destinationIds[elementIndex]) + ")";
+            if (typeof strokeStates == "undefined" || strokeStates[elementIndex] == true){
+                element.style.stroke = "#FFFFFF";
+                element.style.strokeWidth = "2";
+            }
+            element.style.opacity = "100%"
         });
         putOnTop(sourceId);
     };
@@ -107,7 +110,7 @@ function hoverEffect(sourceId, destinationIds){
         destinations.forEach(element => {
             element.style.filter = "";
             element.style.strokeWidth = "0";
-            element.setAttribute("opacity", opacities[destinations.indexOf(element)]);
+            element.style.opacity = opacities[destinations.indexOf(element)];
             defs.removeChild(document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)])));
         });
     }
@@ -115,15 +118,19 @@ function hoverEffect(sourceId, destinationIds){
 
 
 /* Main functions */
+
 let main_pie_array;
 switch (svg.getAttribute("id")) {
     case "original":
-        main_pie_array = ["agriculture", "waste", "industry", "energy"].map(x => x + "_main_pie");
-        hoverGroupEffect(main_pie_array, x => {return [x + "_path"];});
+        main_pie_array = ["agriculture", "waste", "industry", "energy"]
+        hoverGroupEffect(main_pie_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
         break;
     case "section":
-        main_pie_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland"];
-        hoverGroupEffect(main_pie_array, x => {return [x + "_sec_slice", x + "_pie"]});
-        hoverGroupEffect(main_pie_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x]});
+        main_pie_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
+        "landfills", "wastewater", "chemicals", "cement", 
+        "energy_use_in_industry", "transport", "energy_use_in_buildings", 
+        "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture"];
+        hoverGroupEffect(main_pie_array, x => {return [x + "_sec_slice", x + "_pie"]}, [true, false]);
+        hoverGroupEffect(main_pie_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x]}, [true, false]);
         break;
 }

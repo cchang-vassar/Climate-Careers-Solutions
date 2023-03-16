@@ -86,7 +86,10 @@
 
 		.main_label{fill:#FFFFFF; filter: url(#labelShadow); pointer-events: none;}
 
-		.main_slice{opacity: 30%;}
+		.sec_slice_path{opacity: 30%;}
+		.sec_slice_label{opacity: 30%; pointer-events: none;} 
+		.third_slice_path{opacity: 30%; pointer-events: none;}
+		.third_slice_label{opacity: 30%; pointer-events: none;}	
 	</style>
 
 	<!--piechart-->
@@ -1205,7 +1208,7 @@
         				l286.1,88.7L990.5,690.7z" />
 					<path
 						class="main_pie_path"
-						id="wastewater-pie"
+						id="wastewater_pie"
 						d="M982.2,688.9l-286.1-88.7c-2.5,8-4.6,16.2-6.5,24.4L982.2,688.9z" />
 					<g class="main_label" id="waste_main_label">
 						<path
@@ -1767,7 +1770,7 @@
 						d="M689.6,762.7c8.4,37.8,23.6,73.7,44.9,105.9l265.8-173.7" />
 					<path
 						class="main_pie_path"
-						id="energy_in_agriulture_pie"
+						id="energy_in_agriculture_pie"
 						d="M1000.2,694.8l-316.4,32.4c1.3,12,3.2,23.8,5.8,35.4" />
 					<g class="main_label" id="energy_main_label">
 						<path
@@ -1852,6 +1855,7 @@
 			<g class="main_slice" id="energy_use_in_industry">
 				<path
 					class="sec_slice_path"
+					id="energy_use_in_industry_sec_slice"
 					d="M1248.9,435.4c-67.2-64.8-155.7-100.7-249.1-100.9v16.1c89.2,0.3,173.7,34.5,238,96.5
 					c64.1,61.8,101.3,144.7,104.9,233.4l16.1-0.8C1355,586.7,1316,500,1248.9,435.4z" />
 				<g class="sec_slice_label" id="energy_use_in_industry_label">
@@ -4310,7 +4314,7 @@
 							C772.1,989,772.7,988.8,773.1,988.4z" />
 				</g>
 			</g>
-			<g class="main_slice" id="fugitive_emissions_from_energy_production">
+			<g class="main_slice" id="fugitive_emissions">
 				<path
 					class="sec_slice_path"
 					id="fugitive_emissions_sec_slice"
@@ -4604,7 +4608,7 @@
 							c-0.1,0.7,0,1.6,0.4,2.6c0.4,1.1,0.9,1.8,1.4,2.3C667.6,867.4,668.1,867.5,668.7,867.3z" />
 				</g>
 			</g>
-			<g class="main_slice" id="energy_in_agriculture_fishing">
+			<g class="main_slice" id="energy_in_agriculture">
 				<path
 					class="sec_slice_path"
 					id="energy_in_agriculture_sec_slice"
