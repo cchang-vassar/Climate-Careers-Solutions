@@ -65,14 +65,14 @@ function getFilterId(id){
 
 function createDropShadow(id){
     let filter = document.createElementNS(svgNS, "filter");
-    filter.setAttribute("id", getFilterId(id))
+    filter.setAttribute("id", getFilterId(id));
     let feDropShadow = document.createElementNS(svgNS, "feDropShadow");
     feDropShadow.setAttribute("in", "SourceGraphic");
     feDropShadow.setAttribute("dx", "0");
     feDropShadow.setAttribute("dy", "0");
     feDropShadow.setAttribute("stdDeviation", "5");
     feDropShadow.setAttribute("flood-opacity", "0.7");
-    feDropShadow.setAttribute("flood-color", colorLighten(getFill(id)));
+    feDropShadow.setAttribute("flood-color", getFill(id));
     filter.appendChild(feDropShadow);
     defs.appendChild(filter);
 }
@@ -93,6 +93,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
     let source = document.getElementById(sourceId);
     let destinations = destinationIds.map(x => document.getElementById(x));
     let opacities = destinations.map(element => getComputedStyle(element).getPropertyValue("opacity"));
+    let fills = destinations.map(element => getComputedStyle(element).getPropertyValue("fill"));
     source.onmouseenter = () => {
         destinations.forEach(element => {
             elementIndex = destinations.indexOf(element);
@@ -103,6 +104,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
                 element.style.strokeWidth = "2";
             }
             element.style.opacity = "100%"
+            element.style.fill = colorLighten(getFill(destinationIds[elementIndex]));
         });
         putOnTop(sourceId);
     };
@@ -111,6 +113,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
             element.style.filter = "";
             element.style.strokeWidth = "0";
             element.style.opacity = opacities[destinations.indexOf(element)];
+            element.style.fill = fills[destinations.indexOf(element)];
             defs.removeChild(document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)])));
         });
     }
@@ -118,19 +121,18 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
 
 
 /* Main functions */
-
-let main_pie_array;
+let hover_array;
 switch (svg.getAttribute("id")) {
     case "original":
-        main_pie_array = ["agriculture", "waste", "industry", "energy"]
-        hoverGroupEffect(main_pie_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
+        hover_array = ["agriculture", "waste", "industry", "energy"]
+        hoverGroupEffect(hover_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
         break;
     case "section":
-        main_pie_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
+        hover_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
         "landfills", "wastewater", "chemicals", "cement", 
         "energy_use_in_industry", "transport", "energy_use_in_buildings", 
-        "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture"];
-        hoverGroupEffect(main_pie_array, x => {return [x + "_sec_slice", x + "_pie"]}, [true, false]);
-        hoverGroupEffect(main_pie_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x]}, [true, false]);
+        "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"];
+        hoverGroupEffect(hover_array, x => {return [x + "_sec_slice", x + "_pie", x + "_label"]}, [true, false, false]);
+        hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x, x.replace("_pie", "_label")]}, [true, false, false]);
         break;
 }

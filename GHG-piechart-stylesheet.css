@@ -1,73 +1,137 @@
-:root
-{
+:root {
 	/* AGRICULTURE COLORS */
-	--agriculture-col: #51C47A;
+	--agriculture-col: #51c47a;
 	--livestock-manure-col: #455341;
-	--agricultural-soils-col: #49673F;
-	--rice-cultivation-col: #6B8D3D;
-	--crop-burning-col: #5BBB80;
-	--deforestation-col: #79D99E;
-	--cropland-col: #AEDE9E;
+	--agricultural-soils-col: #49673f;
+	--rice-cultivation-col: #6b8d3d;
+	--crop-burning-col: #5bbb80;
+	--deforestation-col: #79d99e;
+	--cropland-col: #aede9e;
 	--grassland-col: #49a83f;
 
 	/* WASTE COLORS */
-	--waste-col: #3998C8;
-	--landfills-col: #1B7AAA;
-	--wastewater-col: #3998C8;
+	--waste-col: #3998c8;
+	--landfills-col: #1b7aaa;
+	--wastewater-col: #3998c8;
 
 	/* INDUSTRY COLORS */
 	--industry-col: #707070;
 	--chemicals-col: #707070;
-	--cement-col: #A2A2A2;
+	--cement-col: #a2a2a2;
 
 	/* ENERGY COLORS */
-	--energy-col: #FC620A;
-	--energy-use-in-industry-col: #FC2B0A;
-	--transport-col: #C02600;
-	--energy-use-in-buildings-col: #FC620A;
-	--unallocated-fuel-combustion-col: #FF8028;
-	--fugitive-emissions-from-energy-production-col: #FDB679;
-	--energy-in-agriculture-fishing-col: #EBC083;
+	--energy-col: #fc620a;
+	--energy-use-in-industry-col: #fc2b0a;
+	--transport-col: #c02600;
+	--energy-use-in-buildings-col: #fc620a;
+	--unallocated-fuel-combustion-col: #ff8028;
+	--fugitive-emissions-from-energy-production-col: #fdb679;
+	--energy-in-agriculture-fishing-col: #ebc083;
 }
 
 /* Agriculture style */
-#agriculture_group .main_pie_path{fill: var(--agriculture-col);}
-#livestock_manure{fill: var(--livestock-manure-col);}
-#agricultural_soils{fill: var(--agricultural-soils-col);}
-#rice_cultivation{fill: var(--rice-cultivation-col);}
-#crop_burning{fill: var(--crop-burning-col);}
-#deforestation{fill: var(--deforestation-col);}
-#cropland{fill: var(--cropland-col);}
-#grassland_label_line{fill: none; stroke: var(--grassland-col); stroke-width: 0.5; stroke-miterlimit: 10;}
-.grassland_label_path{fill: var(--grassland-col);}
+#agriculture_group .main_pie_path {
+	fill: var(--agriculture-col);
+}
+#livestock_manure {
+	fill: var(--livestock-manure-col);
+}
+#agricultural_soils {
+	fill: var(--agricultural-soils-col);
+}
+#rice_cultivation {
+	fill: var(--rice-cultivation-col);
+}
+#crop_burning {
+	fill: var(--crop-burning-col);
+}
+#deforestation {
+	fill: var(--deforestation-col);
+}
+#cropland {
+	fill: var(--cropland-col);
+}
+#grassland_label_line {
+	fill: none;
+	stroke: var(--grassland-col);
+	stroke-width: 0.5;
+	stroke-miterlimit: 10;
+}
+.grassland_label_path {
+	fill: var(--grassland-col);
+}
 
 /* Waste style */
-#waste_group .main_pie_path{fill: var(--waste-col);}
-#landfills{fill: var(--landfills-col);}
-#wastewater{fill: var(--wastewater-col);}
+#waste_group .main_pie_path {
+	fill: var(--waste-col);
+}
+#landfills {
+	fill: var(--landfills-col);
+}
+#wastewater {
+	fill: var(--wastewater-col);
+}
 
 /* Industry style */
-#industry_group .main_pie_path{fill: var(--industry-col);}
-#chemicals{fill: var(--chemicals-col);}
-#cement{fill: var(--cement-col);}
+#industry_group .main_pie_path {
+	fill: var(--industry-col);
+}
+#chemicals {
+	fill: var(--chemicals-col);
+}
+#cement {
+	fill: var(--cement-col);
+}
 
 /* Energy style */
-#energy_group .main_pie_path{fill: var(--energy-col);}
-#energy_use_in_industry{fill: var(--energy-use-in-industry-col);}
-#non_ferrous_metals_label_line{fill: none; stroke: var(--energy-use-in-industry-col);}
-#transport{fill: var(--transport-col);}
-#energy_use_in_buildings{fill: var(--energy-use-in-buildings-col);}
-#unallocated_fuel_combustion{fill: var(--unallocated-fuel-combustion-col);}
-#fugitive_emissions_from_energy_production{fill: var(--fugitive-emissions-from-energy-production-col);}
-#energy_in_agriculture_fishing{fill: var(--energy-in-agriculture-fishing-col);}
+#energy_group .main_pie_path {
+	fill: var(--energy-col);
+}
+#energy_use_in_industry {
+	fill: var(--energy-use-in-industry-col);
+}
+#non_ferrous_metals_label_line {
+	fill: none;
+	stroke: var(--energy-use-in-industry-col);
+}
+#transport {
+	fill: var(--transport-col);
+}
+#energy_use_in_buildings {
+	fill: var(--energy-use-in-buildings-col);
+}
+#unallocated_fuel_combustion {
+	fill: var(--unallocated-fuel-combustion-col);
+}
+#fugitive_emissions_from_energy_production {
+	fill: var(--fugitive-emissions-from-energy-production-col);
+}
+#energy_in_agriculture_fishing_fishing {
+	fill: var(--energy-in-agriculture-fishing-col);
+}
 
 /* Piechart title style */
-.our_world_in_data_logo_text_background{fill: #002149;}
-.our_world_in_data_logo_border{fill: #e60006;}
-.our_world_in_data_logo_text{fill: #fefefe;}
-.our_world_in_data_logo_background{fill: #00214a;}
-.pie_chart_title{fill: #3a3737;}
+.our_world_in_data_logo_text_background {
+	fill: #002149;
+}
+.our_world_in_data_logo_border {
+	fill: #e60006;
+}
+.our_world_in_data_logo_text {
+	fill: #fefefe;
+}
+.our_world_in_data_logo_background {
+	fill: #00214a;
+}
+.pie_chart_title {
+	fill: #3a3737;
+}
 
-.main_label{fill:#FFFFFF; filter: url(#labelShadow);}
+.main_label {
+	fill: #ffffff;
+	filter: url(#labelShadow);
+}
 
-.main_slice{opacity: 30%;}
+.main_slice {
+	opacity: 30%;
+}
