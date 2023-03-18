@@ -40,6 +40,11 @@ function colorLighten(hex)
     return colorChange(hex, 25, 25, 25);
 }
 
+function colorDarken(hex)
+{
+    return colorChange(hex, -25, -25, -25);
+}
+
 const svgNS = "http://www.w3.org/2000/svg";
 const svg = document.getElementsByTagName("svg")[0];
 const defs = document.getElementsByTagName("defs")[0];
@@ -59,13 +64,15 @@ function getFill(id)
     return rgbToHex(parseInt(rgb[0].substring(4)), parseInt(rgb[1]), parseInt(rgb[2]));
 }
 
-function getFilterId(id){
-    return id + "_filter";
+function getFilterId(id, drop){
+    return drop ? id + "_drop_filter" : id + "_inset_filter";
 }
+
+
 
 function createDropShadow(id){
     let filter = document.createElementNS(svgNS, "filter");
-    filter.setAttribute("id", getFilterId(id));
+    filter.setAttribute("id", getFilterId(id, true));
     let feDropShadow = document.createElementNS(svgNS, "feDropShadow");
     feDropShadow.setAttribute("in", "SourceGraphic");
     feDropShadow.setAttribute("dx", "0");
@@ -98,7 +105,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
         destinations.forEach(element => {
             elementIndex = destinations.indexOf(element);
             createDropShadow(destinationIds[elementIndex]);
-            element.style.filter = "url(#" + getFilterId(destinationIds[elementIndex]) + ")";
+            element.style.filter = "url(#" + getFilterId(destinationIds[elementIndex], true) + ")";
             if (typeof strokeStates == "undefined" || strokeStates[elementIndex] == true){
                 element.style.stroke = "#FFFFFF";
                 element.style.strokeWidth = "2";
@@ -114,16 +121,33 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
             element.style.strokeWidth = "0";
             element.style.opacity = opacities[destinations.indexOf(element)];
             element.style.fill = fills[destinations.indexOf(element)];
-            defs.removeChild(document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)])));
+            defs.removeChild(document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)], true)));
         });
     }
 }
 
+/*
+function insetEffect(sourceId, destinationIds) {
+    let source = document.getElementById(sourceId);
+    let destinations = destinationIds.map(x => document.getElementById(x));
+    destinations.forEach(element => {
+        elementIndex = destinations.indexOf(element);
+        element.style.filter = "url(#insetShadow)";
+    })
+}
+
+function insetGroupEffect(sourceIds, destinationsFunction) {
+    sourceIds.forEach(id => {
+        insetEffect(id, destinationsFunction(id));    
+    });   
+}
+*/
+
 
 /* Main functions */
 let hover_array;
-switch (svg.getAttribute("id")) {
-    case "original":
+switch (svg.getAttribute("class")) {
+    case "main":
         hover_array = ["agriculture", "waste", "industry", "energy"]
         hoverGroupEffect(hover_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
         break;
@@ -132,7 +156,15 @@ switch (svg.getAttribute("id")) {
         "landfills", "wastewater", "chemicals", "cement", 
         "energy_use_in_industry", "transport", "energy_use_in_buildings", 
         "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"];
+        //insetGroupEffect(hover_array.map(x => x + "pie"), x => { return [x] });
         hoverGroupEffect(hover_array, x => {return [x + "_sec_slice", x + "_pie", x + "_label"]}, [true, false, false]);
         hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x, x.replace("_pie", "_label")]}, [true, false, false]);
+        break;
+    case "slice":
+        hover_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
+        "landfills", "wastewater", "chemicals", "cement", 
+        "energy_use_in_industry", "transport", "energy_use_in_buildings", 
+        "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"]
+        hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x]}, [false]);
         break;
 }

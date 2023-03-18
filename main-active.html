@@ -3,7 +3,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <svg
-	id="original"
+	class="main"
+	id="main-active"
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -12,9 +13,35 @@
 	viewBox="0 0 1920 1244"
 	style="enable-background: new 0 0 1920 1244"
 	xml:space="preserve">
-	<style>
+	<defs>
+		<!--shadow filters-->
+		<filter id="labelShadow">
+			<feDropShadow
+				dx="0"
+				dy="0"
+				stdDeviation="5"
+				flood-opacity="0.5"
+				flood-color="#000000" />
+		</filter>
+
+		<filter id="insetShadow">
+			<feOffset dx="0" dy="0" />
+			<feGaussianBlur stdDeviation="10" result="offset-blur" />
+			<feComposite
+				operator="out"
+				in="SourceGraphic"
+				in2="offset-blur"
+				result="inverse" />
+			<feFlood flood-color="black" flood-opacity=".95" result="color" />
+			<feComposite operator="in" in="color" in2="inverse" result="shadow" />
+			<feComposite operator="over" in="shadow" in2="SourceGraphic" />
+		</filter>
+	</defs>
+
+	<style type="text/css">
 		:root {
 			--agriculture-col: #51c47a;
+			--agriculture-dark-col: #38ab61;
 			--livestock-manure-col: #455341;
 			--agricultural-soils-col: #49673f;
 			--rice-cultivation-col: #6b8d3d;
@@ -24,19 +51,22 @@
 			--grassland-col: #49a83f;
 
 			--waste-col: #3998c8;
+			--waste-dark-col: #207faf;
 			--landfills-col: #1b7aaa;
 			--wastewater-col: #3998c8;
 
 			--industry-col: #707070;
+			--industry-dark-col: #575757;
 			--chemicals-col: #707070;
 			--cement-col: #a2a2a2;
 
 			--energy-col: #fc620a;
+			--energy-dark-col: #e34900;
 			--energy-use-in-industry-col: #fc2b0a;
 			--transport-col: #c02600;
 			--energy-use-in-buildings-col: #fc620a;
 			--unallocated-fuel-combustion-col: #ff8028;
-			--fugitive-emissions-from-energy-production-col: #fdb679;
+			--fugitive-emissions-col: #fdb679;
 			--energy-in-agriculture-fishing-col: #ebc083;
 		}
 
@@ -97,6 +127,9 @@
 		#energy_use_in_industry {
 			fill: var(--energy-use-in-industry-col);
 		}
+		#energy_use_in_industry_sec_slice {
+			fill: var(--energy-use-in-industry-col);
+		}
 		#non_ferrous_metals_label_line {
 			fill: none;
 			stroke: var(--energy-use-in-industry-col);
@@ -104,16 +137,25 @@
 		#transport {
 			fill: var(--transport-col);
 		}
+		#transport_sec_slice {
+			fill: var(--transport-col);
+		}
 		#energy_use_in_buildings {
+			fill: var(--energy-use-in-buildings-col);
+		}
+		#energy_use_in_buildings_sec_slice {
 			fill: var(--energy-use-in-buildings-col);
 		}
 		#unallocated_fuel_combustion {
 			fill: var(--unallocated-fuel-combustion-col);
 		}
-		#fugitive_emissions_from_energy_production {
-			fill: var(--fugitive-emissions-from-energy-production-col);
+		#fugitive_emissions {
+			fill: var(--fugitive-emissions-col);
 		}
-		#energy_in_agriculture_fishing_fishing {
+		#fugitive_emissions_sec_slice {
+			fill: var(--fugitive-emissions-col);
+		}
+		#energy_in_agriculture_fishing {
 			fill: var(--energy-in-agriculture-fishing-col);
 		}
 
@@ -4323,7 +4365,7 @@
 							C772.1,989,772.7,988.8,773.1,988.4z" />
 				</g>
 			</g>
-			<g class="main_slice" id="fugitive_emissions_from_energy_production">
+			<g class="main_slice" id="fugitive_emissions">
 				<path
 					class="sec_slice_path"
 					id="fugitive_emissions_sec_slice"
@@ -4617,7 +4659,7 @@
 							c-0.1,0.7,0,1.6,0.4,2.6c0.4,1.1,0.9,1.8,1.4,2.3C667.6,867.4,668.1,867.5,668.7,867.3z" />
 				</g>
 			</g>
-			<g class="main_slice" id="energy_in_agriculture_fishing_fishing">
+			<g class="main_slice" id="energy_in_agriculture_fishing">
 				<path
 					class="sec_slice_path"
 					id="energy_in_agriculture_fishing_sec_slice"
