@@ -103,6 +103,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
     let fills = destinations.map(element => getComputedStyle(element).getPropertyValue("fill"));
     source.onmouseenter = () => {
         destinations.forEach(element => {
+            console.log("in");
             elementIndex = destinations.indexOf(element);
             createDropShadow(destinationIds[elementIndex]);
             element.style.filter = "url(#" + getFilterId(destinationIds[elementIndex], true) + ")";
@@ -117,6 +118,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
     };
     source.onmouseleave = () => {
         destinations.forEach(element => {
+            console.log("out");
             element.style.filter = "";
             element.style.strokeWidth = "0";
             element.style.opacity = opacities[destinations.indexOf(element)];
