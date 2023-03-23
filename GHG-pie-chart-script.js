@@ -46,7 +46,7 @@ function colorDarken(hex)
 }
 
 const svgNS = "http://www.w3.org/2000/svg";
-const svg = document.getElementsByTagName("svg")[0];
+const svgs = document.getElementsByTagName("svg");
 const defs = document.getElementsByTagName("defs")[0];
 
 function getFill(id)
@@ -103,7 +103,6 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
     let fills = destinations.map(element => getComputedStyle(element).getPropertyValue("fill"));
     source.onmouseenter = () => {
         destinations.forEach(element => {
-            console.log("in");
             elementIndex = destinations.indexOf(element);
             createDropShadow(destinationIds[elementIndex]);
             element.style.filter = "url(#" + getFilterId(destinationIds[elementIndex], true) + ")";
@@ -118,7 +117,6 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
     };
     source.onmouseleave = () => {
         destinations.forEach(element => {
-            console.log("out");
             element.style.filter = "";
             element.style.strokeWidth = "0";
             element.style.opacity = opacities[destinations.indexOf(element)];
@@ -148,7 +146,7 @@ function insetGroupEffect(sourceIds, destinationsFunction) {
 
 /* Main functions */
 let hover_array;
-switch (svg.getAttribute("class")) {
+Array.from(svgs).forEach(svg => {switch (svg.getAttribute("class")) {
     case "main":
         hover_array = ["agriculture", "waste", "industry", "energy"]
         hoverGroupEffect(hover_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
@@ -169,4 +167,4 @@ switch (svg.getAttribute("class")) {
         "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"]
         hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x]}, [false]);
         break;
-}
+}});
