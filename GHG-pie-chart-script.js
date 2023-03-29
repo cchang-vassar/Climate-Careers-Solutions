@@ -45,14 +45,9 @@ function colorDarken(hex)
     return colorChange(hex, -25, -25, -25);
 }
 
-const svgNS = "http://www.w3.org/2000/svg";
-const svgs = document.getElementsByTagName("svg");
-const defs = document.getElementsByTagName("defs")[0];
-
 function getFill(id)
-
 {
-	let element = document.getElementById(id);
+	let element = current_document.getElementById(id);
     var fill;
 	if (element.currentStyle) {
 		fill = x.currentStyle["fill"];
@@ -81,11 +76,11 @@ function createDropShadow(id){
     feDropShadow.setAttribute("flood-opacity", "0.7");
     feDropShadow.setAttribute("flood-color", getFill(id));
     filter.appendChild(feDropShadow);
-    defs.appendChild(filter);
+    current_definition.appendChild(filter);
 }
 
 function putOnTop(id){
-    let element = document.getElementById(id).parentNode;
+    let element = current_document.getElementById(id).parentNode;
     element.parentNode.appendChild(element);
 }
 
@@ -97,8 +92,8 @@ function hoverGroupEffect(sourceIds, destinationsFunction, strokeStates)
 }
 
 function hoverEffect(sourceId, destinationIds, strokeStates){
-    let source = document.getElementById(sourceId);
-    let destinations = destinationIds.map(x => document.getElementById(x));
+    let source = current_document.getElementById(sourceId);
+    let destinations = destinationIds.map(x => current_document.getElementById(x));
     let opacities = destinations.map(element => getComputedStyle(element).getPropertyValue("opacity"));
     let fills = destinations.map(element => getComputedStyle(element).getPropertyValue("fill"));
     source.onmouseenter = () => {
@@ -121,7 +116,7 @@ function hoverEffect(sourceId, destinationIds, strokeStates){
             element.style.strokeWidth = "0";
             element.style.opacity = opacities[destinations.indexOf(element)];
             element.style.fill = fills[destinations.indexOf(element)];
-            defs.removeChild(document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)], true)));
+            current_definition.removeChild(current_document.getElementById(getFilterId(destinationIds[destinations.indexOf(element)], true)));
         });
     }
 }
@@ -145,26 +140,39 @@ function insetGroupEffect(sourceIds, destinationsFunction) {
 
 
 /* Main functions */
+const svgNS = "http://www.w3.org/2000/svg";
+const svgHoverClassIds = ["main", "section", "slice"];
+
 let hover_array;
-Array.from(svgs).forEach(svg => {switch (svg.getAttribute("class")) {
-    case "main":
-        hover_array = ["agriculture", "waste", "industry", "energy"]
-        hoverGroupEffect(hover_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
-        break;
-    case "section":
-        hover_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
-        "landfills", "wastewater", "chemicals", "cement", 
-        "energy_use_in_industry", "transport", "energy_use_in_buildings", 
-        "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"];
-        //insetGroupEffect(hover_array.map(x => x + "pie"), x => { return [x] });
-        hoverGroupEffect(hover_array, x => {return [x + "_sec_slice", x + "_pie", x + "_label"]}, [true, false, false]);
-        hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x, x.replace("_pie", "_label")]}, [true, false, false]);
-        break;
-    case "slice":
-        hover_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
-        "landfills", "wastewater", "chemicals", "cement", 
-        "energy_use_in_industry", "transport", "energy_use_in_buildings", 
-        "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"]
-        hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x]}, [false]);
-        break;
-}});
+let current_document;
+let current_definition;
+
+Array.from(document.getElementsByTagName("svg")).forEach(svg => {
+    let svgClassId = svg.getAttribute("class");
+    if (svgHoverClassIds.includes(svgClassId)) {
+        current_document = document.getElementById(svg.getAttribute("id"));
+        current_definition = current_document.getElementsByTagName("defs")[0];
+        switch (svgClassId) {
+            case "main":
+                hover_array = ["agriculture", "waste", "industry", "energy"]
+                hoverGroupEffect(hover_array.map(x => x + "_main_pie"), x => {return [x + "_path"];});
+                break;
+            case "section":
+                hover_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
+                "landfills", "wastewater", "chemicals", "cement", 
+                "energy_use_in_industry", "transport", "energy_use_in_buildings", 
+                "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"];
+                //insetGroupEffect(hover_array.map(x => x + "pie"), x => { return [x] });
+                hoverGroupEffect(hover_array, x => {return [x + "_sec_slice", x + "_pie", x + "_label"]}, [true, false, false]);
+                hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x.replace("_pie", "_sec_slice"), x, x.replace("_pie", "_label")]}, [true, false, false]);
+                break;
+            case "slice":
+                hover_array = ["livestock_manure", "agricultural_soils", "rice_cultivation", "crop_burning", "deforestation", "cropland", 
+                "landfills", "wastewater", "chemicals", "cement", 
+                "energy_use_in_industry", "transport", "energy_use_in_buildings", 
+                "unallocated_fuel_combustion", "fugitive_emissions", "energy_in_agriculture_fishing"]
+                hoverGroupEffect(hover_array.map(x => x + "_pie"), x => {return [x]}, [false]);
+                break;
+        }
+    }
+});
